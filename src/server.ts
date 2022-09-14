@@ -5,10 +5,7 @@ import { convertHourStringToMinuts } from "./utils/convert-hour-string-to-minuts
 import { convertMinutsToHourString } from "./utils/convert-minuts-to-hour-string";
 
 const app = express();
-// app.use(express.urlencoded({ extended: true }))
-// consign()
-// .include('controllers')
-// .into(app)
+
 app.use(express.json());
 app.use(cors());
 
