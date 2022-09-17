@@ -25,9 +25,7 @@ app.get('/games', async (request, response) => {
         }
     })
     
-    return response.json([
-        games,
-    ])
+    return response.json(games)
 })
 
 app.post('/games/:id/ads', async (request, response) => {
@@ -37,7 +35,7 @@ app.post('/games/:id/ads', async (request, response) => {
     // return response.status(201).json(body)
     const ad = await prisma.ad.create({
         data:{
-            gameId,
+            gameId: body.gameId,
             name: body.name,
             yearsPlaying: body.yearsPlaying,
             discord: body.discord,
@@ -70,7 +68,7 @@ app.get('/games/:id/ads', async (request, response) =>{
             createdAt: 'desc',
         }
     })
-    return response.json([
+    return response.json(
         ads.map(ad=>{
             return{
                 ...ad,
@@ -79,7 +77,7 @@ app.get('/games/:id/ads', async (request, response) =>{
                 hourEnd: convertMinutsToHourString(ad.hourEnd)
             }
         })
-    ])    
+    )    
 }) 
 
 app.get('/ads/:id/discord', async (request, response) =>{
